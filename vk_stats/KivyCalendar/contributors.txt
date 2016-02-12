@@ -1,0 +1,6 @@
+
+## Author
+* Oleg Kozlov (xxblx) <xxblx.oleg@yandex.com>
+
+## Some improvements
+* Anthony Lobko (amelius)
