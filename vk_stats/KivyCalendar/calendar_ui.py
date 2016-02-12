@@ -98,6 +98,7 @@ class DatePicker(TextInput):
 
         self.text = "%s.%s.%s" % tuple(self.cal.active_date)
         self.focus = False
+        self.cancel_selection()
 
 
 class CalendarWidget(RelativeLayout):
