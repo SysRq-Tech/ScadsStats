@@ -1,0 +1,362 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: SysRq ScadsStats\n"
+"Language: uk\n"
+
+#: stats.py:85
+msgid "Создана временная директория %s"
+msgstr "Зроблена тимчасова директорія %s"
+
+#: stats.py:158
+msgid "Операция прервана по тайм-ауту"
+msgstr "Операція перервана по тайм-ауту"
+
+#: stats.py:211
+msgid "Предупреждение"
+msgstr "Попередження"
+
+#: stats.py:241
+msgid "Некоторая информация"
+msgstr "Деяка інформація"
+
+#: stats.py:245
+msgid "Всё OK"
+msgstr "Все ОК"
+
+#: stats.py:259
+msgid "Результаты будут сохранены в %s"
+msgstr "Результати будуть збережені в %s"
+
+#: stats.py:279
+msgid "Создаю временную директорию..."
+msgstr "Створюю тимчасову директорію"
+
+#: stats.py:280
+msgid "Скачиваю новую версию..."
+msgstr "Завантажую нову версію"
+
+#: stats.py:285
+msgid "Запускаю установщик..."
+msgstr "Запускаю установник"
+
+#: stats.py:288
+msgid "Обновитесь, используя пакетный менеджер"
+msgstr "Оновіться через пакетний менеджер"
+
+#: stats.py:290
+msgid "Завершаю работу приложения..."
+msgstr "Завершую роботу программи"
+
+#: stats.py:351
+msgid "Неверный URL"
+msgstr "Неправильний URL"
+
+#: stats.py:432
+msgid "Ограничено до %s постов"
+msgstr "Обмежено до %s постів"
+
+#: stats.py:441
+msgid "Неправильный формат даты!"
+msgstr "Неправильний формат дати"
+
+#: stats.py:447
+msgid "Будут получены посты с даты %s"
+msgstr "Будуть отримані пости з дати %s"
+
+#: stats.py:452
+msgid "Будут получены посты до даты %s"
+msgstr "Будуть отримані пости до дати %s"
+
+#: stats.py:461
+msgid "Кэш стены загруженен"
+msgstr "Кеш стіни завантажений"
+
+#: stats.py:482
+msgid "Получение постов"
+msgstr "Отримання постів"
+
+#: stats.py:560
+msgid "Обработка постов"
+msgstr "Обробка постів"
+
+#: stats.py:570
+msgid "Обработано %s постов"
+msgstr "Оброблено %s постів"
+
+#: stats.py:582
+msgid "Получение пользователей"
+msgstr "Отримання користувачів"
+
+#: stats.py:601
+msgid "Получение лайкеров"
+msgstr "Отримання лайкерів"
+
+#: stats.py:613
+msgid "Получение комментаторов"
+msgstr "Отримання комментарів"
+
+#: stats.py:623 stats.py:630 stats.py:732 stats.py:743 stats.py:774
+#: stats.py:781 stats.py:812 stats.py:823 stats.py:852 stats.py:859
+msgid "Обработка пользователей"
+msgstr "Обробка користувачів"
+
+#: stats.py:645
+msgid "Инициализация"
+msgstr "Ініціалізація"
+
+#: stats.py:655
+msgid "Сохранение результатов"
+msgstr "Збереження результатів"
+
+#: stats.py:664
+msgid "РЕЖИМ СТАТИСТИКИ:"
+msgstr "РЕЖИМ СТАТИСТИКИ:"
+
+#: stats.py:668
+msgid "Имя"
+msgstr "Ім’я"
+
+#: stats.py:668 stats.py:675
+msgid "Счёт"
+msgstr "Рахунок"
+
+#: stats.py:675
+msgid "Пользователь"
+msgstr "Користувач"
+
+#: stats.py:678
+msgid "Сохранение результатов в %s"
+msgstr "Збереження результатів в %s"
+
+#: stats.py:713
+msgid "Получить программу"
+msgstr "Отримати программу"
+
+#: stats.py:717
+msgid "Сделано!"
+msgstr "Зроблено"
+
+#: stats.py:939
+msgid "1) Откройте [color=3366bb][ref=http://vk.cc/3T1J9A]страницу авторизации[/ref][/color]\n"
+"2) Войдите и дайте разрешения приложению\n"
+"3) Скопируйте текст из адресной строки\n"
+"4) Вставьте его ниже!"
+msgstr "1) Відкрийте [color=3366bb][ref=http://vk.cc/3T1J9A]сторінку авторизації[/ref][/color]\n"
+"2) Війдіть і дайте дозвіл додатку\n"
+"3) Скопіюйте текст з адресної строки\n"
+"4) Вставьте його нижче"
+
+#: stats.py:955
+msgid "Неверный токен!"
+msgstr "Неправильний токен"
+
+#: stats.py:963
+msgid "Вход по токену"
+msgstr "Вхід по токену"
+
+#: stats.py:977
+msgid "Неверный логин или пароль!"
+msgstr "Неправильний логін або пароль"
+
+#: stats.py:989
+msgid "[b][size=28]ScadsStats 1.0[/size][/b]\n"
+"Вычисление активных пользователей на стенах ВКонтакте.[color=3366bb]\n"
+"[ref=https://vk.com/sysrqtech]Сообщество ВК[/ref][/color]"
+msgstr "[b][size=28]ScadsStats 1.0[/size][/b]\n"
+"Обчислення активних користувачів на стінах ВКонтакті.[color=3366bb]\n"
+"[ref=https://vk.com/sysrqtech]Группа ВК[/ref][/color] "
+
+#: stats.py:998 interface.kv:279
+msgid "Лицензия"
+msgstr "Ліцензія"
+
+#: stats.py:1000 interface.kv:284
+msgid "Помочь нам"
+msgstr "Допомогти нам"
+
+#: stats.py:1036
+msgid "Вы авторизованы как [b]{first_name} {last_name}[/b]"
+msgstr "Ви авторізовані як [b]{first_name} {last_name}[/b]"
+
+#: stats.py:1045
+msgid "Вы используете последнюю версию!"
+msgstr "Ви використовуєте останню версію"
+
+#: stats.py:1045
+msgid "Нечего делать ;)"
+msgstr "Нічого робити  ;) "
+
+#: stats.py:1048
+msgid "Используйте пакетный менеджер для обновления"
+msgstr "Користуйтесь пакетним менеджером для оновлення"
+
+#: stats.py:1051
+msgid "Найдено обновление до {}!"
+msgstr "Знайденно оновлення до  {}!"
+
+#: stats.py:1052
+msgid "Найдено обновление!"
+msgstr "Знайдено оновлення!"
+
+#: stats.py:1066
+msgid "Ограничение по дате"
+msgstr "Обмеження по даті"
+
+#: stats.py:1076
+msgid "Выберите папку"
+msgstr "Оберіть папку"
+
+#: stats.py:1087
+msgid "Вход по паролю"
+msgstr "Вхід по паролю"
+
+#: stats.py:1098 interface.kv:325
+msgid "Аккаунт"
+msgstr "Аккаунт"
+
+#: stats.py:1107 interface.kv:338
+msgid "О ScadsStats"
+msgstr "Про ScadsStats"
+
+#: stats.py:1127
+msgid "Укажите стену"
+msgstr "Вкажіть стіну"
+
+#: stats.py:1135 interface.kv:374 interface.kv:375
+msgid "Пишущие"
+msgstr "Пишучі"
+
+#: stats.py:1138 interface.kv:375
+msgid "Лайкаемые"
+msgstr "Лайкаємі"
+
+#: stats.py:1141 interface.kv:375
+msgid "Лайкеры"
+msgstr "Лайкери"
+
+#: stats.py:1144 interface.kv:375
+msgid "Обсуждаемые"
+msgstr "Обговорюючі"
+
+#: stats.py:1173
+msgid "Проверьте Ваше интернет-соединение"
+msgstr "Провірьте ваше інтернет з’єднання"
+
+#: interface.kv:111
+msgid "Да"
+msgstr "Так"
+
+#: interface.kv:114
+msgid "Нет"
+msgstr "Ні"
+
+#: interface.kv:130
+msgid "Выбрать"
+msgstr "Вибрати"
+
+#: interface.kv:160
+msgid "полный URL, полученный по инструкции выше"
+msgstr "повний URL отриманний по інструкції"
+
+#: interface.kv:166 interface.kv:214
+msgid "Войти"
+msgstr "Війти"
+
+#: interface.kv:183
+msgid "Логин:"
+msgstr "Логін: "
+
+#: interface.kv:198
+msgid "Пароль:"
+msgstr "Пароль: "
+
+#: interface.kv:218
+msgid "Без пароля"
+msgstr "Без пароля"
+
+#: interface.kv:237
+msgid "Перезайти"
+msgstr "Перезайти"
+
+#: interface.kv:246
+msgid "О программе"
+msgstr "Про программу"
+
+#: interface.kv:262
+msgid "Благодарности"
+msgstr "Подяки"
+
+#: interface.kv:267
+msgid "Авторы"
+msgstr "Автори"
+
+#: interface.kv:271
+msgid "Переводчики"
+msgstr "Переводчики"
+
+#: interface.kv:275
+msgid "Дизайнеры"
+msgstr "Дизайнери"
+
+#: interface.kv:282
+msgid "Загрузка..."
+msgstr "Завантаження"
+
+#: interface.kv:286
+msgid "Вы перенаправлены на страницу репозитория.\n"
+"Сделайте программу лучше!"
+msgstr "Ви перенаправлені на сторінку репозиторія.\n"
+"Зробимо программу кращою!"
+
+#: interface.kv:311
+msgid "Файл"
+msgstr "Файл"
+
+#: interface.kv:314
+msgid "Сохранять в..."
+msgstr "Зберегти в"
+
+#: interface.kv:319
+msgid "Выход"
+msgstr "Вийти"
+
+#: interface.kv:323
+msgid "Правка"
+msgstr "Правка"
+
+#: interface.kv:330
+msgid "Помощь"
+msgstr "Допомога"
+
+#: interface.kv:333
+msgid "Обновиться"
+msgstr "Оновитися"
+
+#: interface.kv:364
+msgid "Режим:"
+msgstr "Режим:"
+
+#: interface.kv:375
+msgid "Комментаторы"
+msgstr "Комментатори"
+
+#: interface.kv:379
+msgid "Посты:"
+msgstr "Пости:"
+
+#: interface.kv:393
+msgid "все по умолчанию"
+msgstr "все по умовчуваннями"
+
+#: interface.kv:395
+msgid "Дата:"
+msgstr "Дата:"
+
+#: interface.kv:423
+msgid "Поехали!"
+msgstr "Поїхали"
+
