@@ -1,4 +1,17 @@
-#Change log for VK Stats by SysRq
+#Change log for ScadsStats by SysRq
+##Version 1.0 "Carboneum"
+* Migration to Kivy
+* Migration to VK library
+* Multi-threading
+* Auto-opening results folder in file manager
+* New mode: Commentators
+* New export format: HTML
+* Calendar date picker
+* New nice icons (small'n'flat)
+* Updated translations
+* Optimizations & speedups
+* Small bugfixes and improvements
+
 ##Version 0.9 "Bad Luck Brian"
 * Added some GUI
 * Windows installer, wow!

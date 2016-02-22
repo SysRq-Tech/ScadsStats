@@ -1,7 +1,0 @@
-The gettext_windows.py code written by Alexander Belchenko 
-(bialix AT ukr dot net).
-
-The main idea was implemented in 2006, then code improved in 2007 and 2010. 
-
-Such code used in some Bazaar GUI projects, like QBzr, Bazaar Explorer and
-Tortoise Bazaar.

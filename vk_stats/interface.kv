@@ -1,0 +1,447 @@
+#:kivy 1.8.0
+#:import _ __main__._
+#:import _exit os._exit
+#:import home __main__.HOME
+#:import dir __main__.SCRIPTDIR
+<IconButton>:
+    image: None
+    align: 'left'
+    canvas:
+        Rectangle:
+            source: self.image
+            pos: (self.width - self.height, self.y) if self.align == "right" else (self.x, self.y)
+            size: self.height, self.height
+<Date>:
+<Tooltip>:
+    size_hint: None, None
+    size: self.texture_size[0] + 5, self.texture_size[1] + 5
+    canvas.before:
+        Color:
+            rgb: 0.2, 0.2, 0.2
+        Rectangle:
+            size: self.size
+            pos: self.pos
+<AllOk>:
+    ok: ok
+    message: message
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.8
+        AsyncImage:
+            size_hint_x: 0.25
+            source: dir + '/images/128/ok.png'
+        Label:
+            id: message
+            valign: 'middle'
+            text_size: self.size
+            font_size: '18sp'
+            size_hint_x: 0.75
+    Button:
+        id: ok
+        size_hint_y: 0.2
+        size_hint_x: 0.25
+        pos_hint: {'right': 1}
+        text: 'OK'
+<Info>:
+    ok: ok
+    message: message
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.8
+        AsyncImage:
+            size_hint_x: 0.25
+            source: dir + '/images/128/info.png'
+        Label:
+            size_hint_x: 0.75
+            valign: 'middle'
+            text_size: self.size
+            font_size: '18sp'
+            id: message
+    Button:
+        id: ok
+        size_hint_y: 0.2
+        size_hint_x: 0.25
+        pos_hint: {'right': 1}
+        text: 'OK'
+<Alert>:
+    ok: ok
+    message: message
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.8
+        AsyncImage:
+            size_hint_x: 0.25
+            source: dir + '/images/128/error.png'
+        Label:
+            size_hint_x: 0.75
+            valign: 'middle'
+            text_size: self.size
+            font_size: '18sp'
+            id: message
+    Button:
+        id: ok
+        size_hint_y: 0.2
+        size_hint_x: 0.25
+        pos_hint: {'right': 1}
+        text: 'OK'
+<Update>:
+    no: no
+    yes: yes
+    version: version
+    upd_text: upd_text
+    orientation: 'vertical'
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.7
+        AsyncImage:
+            size_hint_x: 0.25
+            source: dir + '/images/128/info.png'
+        Label:
+            id: version
+            font_size: '18sp'
+            size_hint_x: 0.75
+    Label:
+        id: upd_text
+        font_size: '16sp'
+        size_hint_y: 0.1
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.2
+        pos_hint_x: {'right': 1}
+        Button:
+            id: no
+            text: _('Да')
+        Button:
+            id: yes
+            text: _('Нет')
+<Saveto>:
+    select: select
+    chooser: chooser
+    orientation: 'vertical'
+    FileChooserIconView:
+        id: chooser
+        size_hint_y: 0.85
+        rootpath: home
+        dirselect: True
+        filters: [app.is_dir]
+    IconButton:
+        id: select
+        size_hint_y: 0.15
+        size_hint_x: 0.25
+        pos_hint: {'right': 1}
+        text: _('Выбрать')
+        image: dir + '/images/48/ok.png'
+<Token>:
+    login: login
+    token: token
+    link: link
+    orientation: 'vertical'
+    spacing: 10
+    Label:
+        id: link
+        size_hint_y: 0.6
+        markup: True
+        halign: 'left'
+        valign: 'top'
+        text_size: self.size
+        font_size: '17sp'
+        text: root.token_manual
+    BoxLayout:
+        size_hint_y: 0.2
+        orientation: 'horizontal'
+        Label:
+            size_hint_x: 0.1
+            text: 'URL:'
+            halign: 'right'
+            valign: 'middle'
+            text_size: self.size
+            font_size: '18sp'
+        TextInput:
+            id: token
+            size_hint_x: 0.9
+            multiline: False
+            use_bubble: True
+            hint_text: _('полный URL, полученный по инструкции выше')
+            font_size: '18sp'
+    IconButton:
+        id: login
+        size_hint_y: 0.2
+        size_hint_x: 0.25
+        pos_hint: {'right': 1}
+        text: _('Войти')
+        image: dir + '/images/48/login.png'
+<Login>:
+    by_token: by_token
+    log_in: log_in
+    login: login
+    password: password
+    orientation: 'vertical'
+    spacing: 10
+    BoxLayout:
+        size_hint_y: 0.7
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                size_hint_x: 0.2
+                size_hint_y: 0.65
+                text: _('Логин:')
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+                font_size: '17sp'
+            TextInput:
+                id: login
+                size_hint_x: 0.8
+                size_hint_y: 0.65
+                multiline: False
+                use_bubble: True
+                font_size: '17sp'
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                size_hint_x: 0.2
+                size_hint_y: 0.65
+                text: _('Пароль:')
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+                font_size: '17sp'
+            TextInput:
+                id: password
+                size_hint_x: 0.8
+                size_hint_y: 0.65
+                multiline: False
+                password: True
+                use_bubble: True
+                font_size: '17sp'
+    BoxLayout:
+        size_hint_y: 0.3
+        IconButton:
+            id: log_in
+            text: _('Войти')
+            image: dir + '/images/48/login.png'
+        Button:
+            id: by_token
+            text: _('Без пароля')
+<Account>:
+    relogin: relogin
+    orientation: 'vertical'
+    BoxLayout:
+        size_hint_y: 0.75
+        orientation: 'horizontal'
+        AsyncImage:
+            size_hint_x: 0.25
+            source: app.get_user_photo()
+        Label:
+            size_hint_x: 0.75
+            markup: True
+            text: app.get_user_name()
+            font_size: '18sp'
+    IconButton:
+        id: relogin
+        size_hint_y: 0.25
+        size_hint_x: 0.325
+        font_size: '16sp'
+        pos_hint: {'right': 1}
+        text: _('Перезайти')
+        image: dir + '/images/48/login.png'
+<About>:
+    link: link
+    rst: rst
+    do_default_tab: False
+    tab_pos: 'bottom_left'
+    tab_width: 150
+    TabbedPanelItem:
+        text: _('О программе')
+        BoxLayout:
+            orientation: 'horizontal'
+            AsyncImage:
+                size_hint_x: 0.4
+                source: dir + '/images/stats_big.png'
+            Label:
+                id: link
+                size_hint_x: 0.6
+                font_size: '16sp'
+                text_size: self.size
+                valign: 'middle'
+                halign: 'center'
+                markup: True
+                text: root.about_text
+    TabbedPanelItem:
+        text: _('Благодарности')
+        TabbedPanel:
+            do_default_tab: False
+            tab_width: 115
+            TabbedPanelItem:
+                text: _('Авторы')
+                RstDocument:
+                    source: dir + '/docs/credits/authors.rst'
+            TabbedPanelItem:
+                text: _('Переводчики')
+                RstDocument:
+                    source: dir + '/docs/credits/translators.rst'
+            TabbedPanelItem:
+                text: _('Дизайнеры')
+                RstDocument:
+                    source: dir + '/docs/credits/artists.rst'
+    TabbedPanelItem:
+        text: _('Лицензия')
+        RstDocument:
+            id: rst
+            text: _('Загрузка...')
+    TabbedPanelItem:
+        text: _('Помочь нам')
+        Label:
+            text: _('Вы перенаправлены на страницу репозитория.\nСделайте программу лучше!')
+            text_size: self.size
+            font_size: '24sp'
+            halign: 'center'
+            valign: 'middle'
+
+<Main>:
+    bar: bar
+    bar_text: bar_text
+    group_input: group_input
+    from_input: from_input
+    to_input: to_input
+    posts_input: posts_input
+    mode: mode
+    go: go
+    orientation: 'vertical'
+    ActionBar:
+        size_hint_y: 0.15
+        ActionView:
+            use_separator: True
+            ActionPrevious:
+                size_hint_x: 0.4
+                title: 'ScadsStats'
+                app_icon: dir + '/images/stats.png'
+            ActionGroup:
+                size_hint_x: 0.2
+                text: _('Файл')
+                TooltipButton:
+                    icon: dir + '/images/48/save.png'
+                    text: _('Сохранять в...')
+                    on_press: app.saveto()
+                ActionSeparator:
+                TooltipButton:
+                    icon: dir + '/images/48/quit.png'
+                    text: _('Выход')
+                    on_press: _exit(0)
+            ActionGroup:
+                size_hint_x: 0.2
+                text: _('Правка')
+                TooltipButton:
+                    text: _('Аккаунт')
+                    icon: dir + '/images/48/account.png'
+                    on_press: app.account()
+            ActionGroup:
+                size_hint_x: 0.2
+                text: _('Помощь')
+                TooltipButton:
+                    icon: dir + '/images/48/update.png'
+                    text: _('Обновиться')
+                    on_press: app.update_check()
+                ActionSeparator:
+                TooltipButton:
+                    icon: dir + '/images/48/about.png'
+                    text: _('О ScadsStats')
+                    on_press: app.about()
+    BoxLayout:
+        size_hint_y: 0.5
+        padding: 0, 0, 7, 0
+        orientation: 'vertical'
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'https://vk.com/'
+                size_hint_y: 0.35
+                size_hint_x: 0.4
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+                font_size: '18sp'
+            TextInput:
+                size_hint_y: 0.35
+                size_hint_x: 0.6
+                id: group_input
+                multiline: False
+                font_size: '18sp'
+                use_bubble: True
+                hint_text: 'URL'
+                text_align: 'bottom'
+            Label:
+                text: _('Режим:')
+                size_hint_y: 0.35
+                size_hint_x: 0.4
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+                font_size: '18sp'
+            Spinner:
+                size_hint_y: 0.35
+                size_hint_x: 0.6
+                id: mode
+                text: _('Пишущие')
+                font_size: '18sp'
+                values: (_('Пишущие'), _('Лайкаемые'), _('Лайкеры'), _('Обсуждаемые'), _('Комментаторы'))
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: _('Посты:')
+                size_hint_y: 0.35
+                size_hint_x: 0.4
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+                font_size: '18sp'
+            TextInput:
+                size_hint_y: 0.35
+                size_hint_x: 0.6
+                id: posts_input
+                multiline: False
+                font_size: '18sp'
+                use_bubble: True
+                input_filter: 'int'
+                hint_text: _('все по умолчанию')
+            Label:
+                text: _('Дата:')
+                size_hint_y: 0.35
+                size_hint_x: 0.4
+                halign: 'right'
+                valign: 'middle'
+                text_size: self.size
+                font_size: '18sp'
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_x: 0.6
+                size_hint_y: 0.35
+                Date:
+                    id: from_input
+                    text: '0.0.0'
+                    font_size: '18sp'
+                Date:
+                    id: to_input
+                    font_size: '18sp'
+    Label:
+        id: bar_text
+        size_hint_y: 0.1
+        text_size: self.size
+        font_size: '16sp'
+        valign: 'bottom'
+        halign: 'center'
+    ProgressBar:
+        id: bar
+        size_hint_y: 0.1
+    IconButton:
+        id: go
+        size_hint_y: 0.15
+        text: _('Поехали!')
+        font_size: '18sp'
+        image: dir + '/images/128/go.png'
+        align: 'right'
+        on_press: app.start()

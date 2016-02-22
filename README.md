@@ -1,47 +1,25 @@
-#SysRq VK Stats
-Tool for gathering statistics from VKontakte groups.
+#SysRq ScadsStats
+Нахождение активных пользователей на стенах ВКонтакте.
 
-##Requirements
+##Требования
 * Python >= 3.3
+* Kivy >= 1.8.0
+* [VK.com API Python Wrapper](https://github.com/dimka665/vk)
+* [Requests](http://python-requests.org)
 
-##Usage
-`./stats.py <group> [opts]`
+##Установка
+###Debian
+```bash
+# echo 'deb http://ppa.launchpad.net/cybertailor/sysrq/ubuntu trusty main' >> /etc/apt/sources.list
+# apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 5919086F 
+# apt-get update && apt-get install vk-stats
+```
+###Ubuntu
+```bash
+# add-apt-repository ppa:cybertailor/sysrq
+# apt-get update && apt-get install vk-stats
+```
 
-`./stats.py --help` - show help
-
-`./stats.py --version` - show version
-
-`./stats.py x --update` - check for updates
-
-##Command-line arguments
-###--mode {posts, likers, liked}
-**Posts:** count of posts
-
-**Likers:** count of done likes
-
-**Liked:** count of collected likes
-
-###--export {csv, txt, all}
-**TXT:** usual text file
-
-**CSV:** ( **C**omma **S**eparated **V**alues ), open it in *MS Excel* or *LibreOffice Calc*
-
-###--posts <number>
-Limit for posts.
-
-**Default:** 0
-
-###--date <yyyy/mm/dd>
-The earliest date of post.
-
-**Default:** 0/0/0
-
-###--login
-Get access to VKontakte.
-
-###--verbose
-Verbose output.
-
-##Used libraries
-* [vk_api_auth](https://github.com/dzhioev/vk_api_auth)
+##Используемые библиотеки
 * [gettext_windows](https://launchpad.net/gettext-py-windows)
+* [KivyCalendar](https://bitbucket.org/xxblx/kivycalendar): модифицировано мной
