@@ -23,3 +23,7 @@
 ##Используемые библиотеки
 * [gettext_windows](https://launchpad.net/gettext-py-windows)
 * [KivyCalendar](https://bitbucket.org/xxblx/kivycalendar): модифицировано мной
+
+##Помочь нам
+* [Перевести](https://poeditor.com/join/project/cq07DODUUL) программу на любой язык
+* [Присоединиться](http://vk.com/sysrqtech) к сообществу ВКонтакте
