@@ -35,7 +35,7 @@ if sys.platform.startswith("win"):
     requirements.append("gettext_windows")
 
 setup(name="ScadsStats",
-      version="1.0",
+      version="1.0.0.2",
       description="Finding active users on VK walls",
       long_description=long_desc,
       author="Matvey Vyalkov",
@@ -45,8 +45,8 @@ setup(name="ScadsStats",
       scripts=["vk-stats"],
       packages=["vk_stats", "vk_stats.KivyCalendar"],
       package_data={"": ["interface.kv"],
-                    "vk_stats": ["html/*",
-                                 "images/*", "images/48/*", "images/128/*",
-                                 "docs/*", "docs/credits/*",
-                                 "locale/ru_RU/LC_MESSAGES/*", "locale/uk_UA/LC_MESSAGES/*"]},
+                    "vk_stats": ["html/*.*",
+                                 "images/*.*", "images/48/*.*", "images/128/*.*",
+                                 "docs/*.*", "docs/credits/*.*",
+                                 "locale/ru_RU/LC_MESSAGES/*.*", "locale/uk_UA/LC_MESSAGES/*.*"]},
       requires=requirements)
