@@ -19,6 +19,11 @@
 # add-apt-repository ppa:cybertailor/sysrq
 # apt-get update && apt-get install vk-stats
 ```
+###Любой Linux
+```bash
+# python3 -m pip install ScadsStats
+$ vk-stats
+```
 
 ##Используемые библиотеки
 * [gettext_windows](https://launchpad.net/gettext-py-windows)
