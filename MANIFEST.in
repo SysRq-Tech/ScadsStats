@@ -1,0 +1,5 @@
+recursive-include html *
+recursive-include docs *
+recursive-include images *
+recursive-include locale *
+include interface.kv
