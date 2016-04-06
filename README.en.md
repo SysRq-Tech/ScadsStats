@@ -1,14 +1,13 @@
 #SysRq ScadsStats
-[English](https://github.com/SysRq-Tech/ScadsStats/blob/master/README.en.md)
-Нахождение активных пользователей на стенах ВКонтакте.
+Finding active users on VK walls.
 
-##Требования
+##Requirements
 * Python >= 3.3
 * Kivy >= 1.8.0
 * [VK.com API Python Wrapper](https://github.com/dimka665/vk)
 * [Requests](http://python-requests.org)
 
-##Установка
+##Installing
 ###Debian
 ```bash
 # echo 'deb http://ppa.launchpad.net/cybertailor/sysrq/ubuntu trusty main' >> /etc/apt/sources.list
@@ -20,16 +19,16 @@
 # add-apt-repository ppa:cybertailor/sysrq
 # apt-get update && apt-get install vk-stats
 ```
-###Любой Linux
+###Other Linux
 ```bash
 # python3 -m pip install ScadsStats
 $ vk-stats
 ```
 
-##Используемые библиотеки
+##Used libs
 * [gettext_windows](https://launchpad.net/gettext-py-windows)
-* [KivyCalendar](https://bitbucket.org/xxblx/kivycalendar): модифицировано мной
+* [KivyCalendar](https://bitbucket.org/xxblx/kivycalendar) _(my modification)_
 
-##Помочь нам
-* [Перевести](https://poeditor.com/join/project/cq07DODUUL) программу на любой язык
-* [Присоединиться](http://vk.com/sysrqtech) к сообществу ВКонтакте
+##Help us
+* [Translate](https://poeditor.com/join/project/cq07DODUUL) program to your language
+* [Join](http://vk.com/sysrqint) our VK community
