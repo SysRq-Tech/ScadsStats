@@ -56,6 +56,9 @@ Builder.load_string("""
     
 <DayNumWeekendButton>:
     background_color: 1, 0, 0, 1
+<DatePicker>:
+    multiline: False
+    padding: [5, (self.height - self.line_height) / 2]
 """)    
 ###########################################################
 
