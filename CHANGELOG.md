@@ -1,4 +1,16 @@
 #Change log for ScadsStats by SysRq
+##Version 1.0.1 "Carboneum"
+* Speedups in getting posts, likers and commentators
+* Access token lives longer
+* Resizable window
+* Centered text in TextInputs
+* Displaying current directory in the "Save to..." popup
+* Bigger popups' titles
+* Translatable strings moved from .KV file to program
+* New directory structure for results
+* Directory with results opens only once
+* New update check server
+
 ##Version 1.0 "Carboneum"
 * Migration to Kivy
 * Migration to VK library
@@ -14,8 +26,8 @@
 
 ##Version 0.9 "Bad Luck Brian"
 * Added some GUI
-* Windows installer, wow!
-* PPA repository for Ubuntu-based OSes, yes!
+* Windows installer!
+* PPA repository for Ubuntu-based OSes!
 * Many optimizations
 * Removed "--export" option
 * Small bugfixes and improvements
