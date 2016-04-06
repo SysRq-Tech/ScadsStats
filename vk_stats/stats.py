@@ -23,6 +23,7 @@
 import os
 import sys
 import csv
+import queue
 import atexit
 import shutil
 import pickle
@@ -33,12 +34,9 @@ import vk
 import vk.exceptions
 import requests
 import requests.exceptions
-import queue
 from webbrowser import open as open_url
 from vk.utils import stringify_values
 from kivy.app import App
-from .service import HOME, SCRIPTDIR, _
-from .KivyCalendar import DatePicker
 from kivy.logger import Logger
 from kivy.core.window import Window
 from kivy.config import Config
@@ -48,15 +46,23 @@ from kivy.uix.actionbar import ActionButton
 from kivy.uix.popup import Popup
 from kivy.uix.label import Label
 from kivy.uix.button import Button
+from kivy.uix.textinput import TextInput
 from kivy.lang import Builder
 from kivy.utils import platform
 from kivy.clock import Clock
 from kivy.properties import ObjectProperty as Object
 
+try:
+    from .service import HOME, SCRIPTDIR, _
+    from .KivyCalendar import DatePicker
+except SystemError:
+    from service import HOME, SCRIPTDIR, _
+    from KivyCalendar import DatePicker
+
 __author__ = "CyberTailor <cybertailor@gmail.com>"
-__version__ = '1.0 "Carboneum"'
+__version__ = '1.0.1 "Carboneum"'
 v_number = 4
-api_ver = "5.44"
+api_ver = "5.50"
 infinity = float("inf")
 
 NAME = "ScadsStats: "
@@ -139,7 +145,7 @@ class FailSafeSession(vk.Session):
         timeout = request._api._timeout
         try:
             response = self.requests_session.post(url, method_args, timeout=timeout)
-        except requests.exceptions.ReadTimeout:
+        except (requests.exceptions.ReadTimeout, requests.exceptions.ConnectionError):
             Logger.warning(NAME + _("Операция прервана по тайм-ауту"))
             time.sleep(5)
             response = self.send_api_request(request, captcha_response=captcha_response)
@@ -168,7 +174,7 @@ class AllOk(BoxLayout):
     def show(self, text, title):
         self.message.text = text
         popup = Popup(title=title,
-                      title_size='18sp',
+                      title_size='16pt',
                       content=self,
                       size_hint=(0.85, 0.6))
         self.ok.bind(on_press=popup.dismiss)
@@ -183,7 +189,7 @@ class Info(BoxLayout):
         self.message.text = text
         popup = Popup(title=title,
                       content=self,
-                      title_size='18sp',
+                      title_size='16pt',
                       size_hint=(0.85, 0.6))
         self.ok.bind(on_press=popup.dismiss)
         popup.open()
@@ -196,7 +202,7 @@ class Alert(BoxLayout):
     def show(self, text, kill=False):
         self.message.text = text
         popup = Popup(title=_("Предупреждение"),
-                      title_size='18sp',
+                      title_size='16pt',
                       content=self,
                       size_hint=(0.85, 0.6),
                       auto_dismiss=False)
@@ -279,7 +285,7 @@ def upd_check():
     """
     Checking for updates
     """
-    latest = requests.get("http://net2ftp.ru/node0/CyberTailor@gmail.com/versions.json").json()["vk_stats"]
+    latest = requests.get("http://tools-sysrq.rhcloud.com/update?program=vk_stats").json()
     if latest["number"] > v_number:
         return latest["version"]
     else:
@@ -315,10 +321,9 @@ def login(email, password):
     :param email: e-mail address or phone number
     :return: access_token for VK
     """
-    global api
     app_id = 4589594
     session = FailSafeAuthSession(user_login=email, user_password=password,
-                                  app_id=app_id, scope=["stats", "groups", "wall"])
+                                  app_id=app_id, scope="offline,stats,groups,wall")
     get_api(api_session=session)
     write_token(session.get_access_token())
 
@@ -387,7 +392,7 @@ class Stats:
     Gathering statistics
     """
 
-    def __init__(self, name, bar, *, posts_lim=0, from_lim="0.0.0", to_lim="0.0.0"):
+    def __init__(self, name, bar, posts_lim=0, from_lim="0.0.0", to_lim="0.0.0"):
         """
         Run set_bar() and loggers() functions before calling.
         :param name: ID or screen name
@@ -401,6 +406,7 @@ class Stats:
         self.comm_list = []
         self.id_list = []
         self.screen_name = name
+        self.dir_opened = None
         self.cache = "{}/{}.dat".format(TEMP, self.screen_name)
         self.savedir = os.path.join(SAVEDIR, self.screen_name)
 
@@ -437,10 +443,10 @@ class Stats:
         if os.path.isfile(self.cache):
             with open(self.cache, "rb") as cache:
                 loaded = pickle.load(cache)
-                if loaded[3] >= self.from_lim \
-                        and loaded[4] <= self.to_lim \
-                        and loaded[5] <= self.posts_lim:
-                    self.plist, self.likers_list, self.comm_list = loaded[:3]
+                if loaded[4] >= self.from_lim \
+                        and loaded[5] <= self.to_lim \
+                        and loaded[6] <= self.posts_lim:
+                    self.plist, self.likers_list, self.comm_list, self.dir_opened = loaded[:4]
                     Logger.info(NAME + _("Кэш стены загруженен"))
 
     def _restore(self):
@@ -448,19 +454,19 @@ class Stats:
         self.likers_list = []
         self.comm_list = []
         self.id_list = []
+        self.dir_opened = None
         self.bar.set_text("")
         self.bar.finish()
 
     def _check_limit(self, data):
         date = data["date"]
         if self.from_lim and date < self.from_lim:
-            Logger.debug("FROM: " + time.strftime("%d.%m.%y", time.localtime(date)))
             return True
         return False
 
     def _get_posts(self):
         posts = []
-        thousands_range = self.posts_lim // 1000 + self.posts_lim % 1000
+        thousands_range = self.posts_lim // 1000 + (1 if self.posts_lim % 1000 else 0)
         offset = 0
         self.bar.set_text(_("Получение постов"))
 
@@ -476,7 +482,7 @@ class Stats:
 
     def _get_likers(self, offset=0, did=0, task=0):
         id_list_copy = self.id_list.copy()
-        twenty_five_range = len(self.id_list) // 25 + len(self.id_list) % 25
+        twenty_five_range = len(self.id_list) // 25 + (1 if len(self.id_list) % 25 else 0)
 
         for i in range(twenty_five_range):
             self.bar.set_value(percents(did, task))
@@ -497,7 +503,7 @@ class Stats:
 
     def _get_comm(self, offset=0, did=0, task=0):
         id_list_copy = self.id_list.copy()
-        twenty_five_range = len(self.id_list) // 25 + len(self.id_list) % 25
+        twenty_five_range = len(self.id_list) // 25 + (1 if len(self.id_list) % 25 else 0)
 
         for i in range(twenty_five_range):
             self.bar.set_value(percents(did, task))
@@ -521,7 +527,6 @@ class Stats:
             if self._check_limit(data):
                 continue
             if data["date"] > self.to_lim:
-                Logger.debug("TO: " + time.strftime("%d.%m.%y", time.localtime(data["date"])))
                 continue
             post_id = data["id"]
             from_id = data["from_id"]
@@ -535,6 +540,7 @@ class Stats:
         :return: list of posts
         """
         if self.plist:
+            print("OK")
             return
         posts = self._get_posts()
         task = len(posts)
@@ -627,10 +633,7 @@ class Stats:
         api.stats.trackVisitor()
 
         data = self.gather_stats()
-        with open(self.cache, "wb") as cache:
-            pickle.dump([self.plist, self.likers_list, self.comm_list,
-                         self.from_lim, self.to_lim, self.posts_lim], file=cache)
-        self.savedir = os.path.join(SAVEDIR, self.screen_name)
+        self.savedir = os.path.join(SAVEDIR, self.screen_name, mode.lower())
         if not os.path.isdir(self.savedir):
             os.makedirs(self.savedir, exist_ok=True)
         self.bar.set_text(_("Сохранение результатов"))
@@ -694,12 +697,20 @@ class Stats:
         print(html_end.format(_("Получить программу")), file=html_file)
         for file in txt_file, csv_file, html_file:
             file.close()
+
+        if not self.dir_opened == os.path.join(SAVEDIR, self.screen_name):
+            if mustdie:
+                os.startfile(self.savedir)
+            elif platform == "linux":
+                os.system("xdg-open '{}'".format(self.savedir))
+            self.dir_opened = os.path.join(SAVEDIR, self.screen_name)
+
+        with open(self.cache, "wb") as cache:
+            pickle.dump([self.plist, self.likers_list, self.comm_list, self.dir_opened,
+                         self.from_lim, self.to_lim, self.posts_lim], file=cache)
+
         self._restore()
         all_ok(_("Сделано!"))
-        if mustdie:
-            os.startfile(self.savedir)
-        elif platform == "linux":
-            os.system("xdg-open '{}'".format(self.savedir))
 
 
 class FavoritesStats(Stats):
@@ -862,6 +873,9 @@ class CommentatorsStats(Stats):
 
 # =====--- GUI ---===== #
 
+class CenteredTextInput(TextInput):
+    pass
+
 
 class IconButton(Button):
     pass
@@ -902,24 +916,29 @@ class TooltipButton(ActionButton):
 
 class Update(BoxLayout):
     no = Object
+    text_no = _("Нет")
     yes = Object
+    text_yes = _("Да")
     version = Object
     upd_text = Object
 
 
 class Saveto(BoxLayout):
     select = Object
+    select_text = _("Выбрать")
     chooser = Object
 
     def save(self, popup):
         selection = self.chooser.selection
-        results(selection[0] if selection else HOME)
+        results(selection[0] if selection else SAVEDIR)
         popup.dismiss()
 
 
 class Token(BoxLayout):
     login = Object
+    login_text = _("Войти")
     token = Object
+    token_hint = _("полный URL, полученный по инструкции выше")
     link = Object
     token_manual = _("1) Откройте [color=3366bb][ref=http://vk.cc/3T1J9A]страницу авторизации[/ref][/color]\n" +
                      "2) Войдите и дайте разрешения приложению\n" +
@@ -929,9 +948,13 @@ class Token(BoxLayout):
 
 class Login(BoxLayout):
     log_in = Object
+    log_in_text = _("Войти")
     by_token = Object
+    by_token_text = _("Без пароля")
     login = Object
+    login_text = _("Логин:")
     password = Object
+    password_text = _("Пароль:")
 
     def token_auth(self, popup):
         try:
@@ -946,7 +969,7 @@ class Login(BoxLayout):
 
         self.content = Token()
         popup = Popup(title=_("Вход по токену"),
-                      title_size='18sp',
+                      title_size='16pt',
                       content=self.content,
                       size_hint=(0.8, 0.65))
         if force:
@@ -956,7 +979,6 @@ class Login(BoxLayout):
         popup.open()
 
     def auth(self, popup):
-
         try:
             login(self.login.text, self.password.text)
         except vk.exceptions.VkAuthError:
@@ -967,14 +989,25 @@ class Login(BoxLayout):
 
 class Account(BoxLayout):
     relogin = Object
+    relogin_text = _("Перезайти")
 
 
 class About(TabbedPanel):
     link = Object
     rst = Object
-    about_text = _('[b][size=28]ScadsStats 1.0[/size][/b]\n'
-                   'Вычисление активных пользователей на стенах ВКонтакте.[color=3366bb]\n'
-                   '[ref=https://vk.com/sysrqtech]Сообщество ВК[/ref][/color]')
+    about_text = _("О программе")
+    description = _("[b][size=28]ScadsStats 1.0[/size][/b]\n"
+                    "Вычисление активных пользователей на стенах ВКонтакте.[color=3366bb]\n"
+                    "[ref=https://vk.com/sysrqtech]Сообщество ВК[/ref][/color]")
+    credits_text = _("Благодарности")
+    authors = _("Авторы")
+    translators = _("Переводчики")
+    designers = _("Дизайнеры")
+    license_item = _("Лицензия")
+    loading = _("Загрузка...")
+    help_item = _("Помочь нам")
+    help_text = _("Вы перенаправлены на страницу репозитория.\n"
+                  "Сделайте программу лучше!")
 
     def __init__(self, **kwargs):
         super(About, self).__init__(**kwargs)
@@ -994,10 +1027,25 @@ class Main(App, BoxLayout):
     from_input = Object
     to_input = Object
     posts_input = Object
+    posts_label = _("Посты:")
+    posts_hint = _("все по умолчанию")
     mode = Object
+    mode_label = _("Режим:")
+    date_label = _("Дата:")
     go = Object
+    go_text = _("Поехали!")
     icon = SCRIPTDIR + "/images/icon.png"
     title = "ScadsStats"
+    saveto_item = _("Сохранять в...")
+    quit_item = _("Выход")
+    account_item = _("Аккаунт")
+    update_item = _("Обновиться")
+    about_item = _("О ScadsStats")
+    writers = _("Пишущие")
+    favorites = _("Лайкаемые")
+    likers = _("Лайкеры")
+    discussed = _("Обсуждаемые")
+    commentators = _("Комментаторы")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
@@ -1036,7 +1084,7 @@ class Main(App, BoxLayout):
                 content = Update()
                 content.version.text = _("Найдено обновление до {}!").format(status) + "\n" + _("Обновиться") + "?"
                 popup = Popup(title=_("Найдено обновление!"),
-                              title_size='18sp',
+                              title_size='16pt',
                               content=content,
                               size_hint=(0.8, 0.7))
                 content.no.bind(on_press=popup.dismiss)
@@ -1051,7 +1099,7 @@ class Main(App, BoxLayout):
         self.date = None
         content = Date(self.date, self.date_input)
         popup = Popup(title=_("Ограничение по дате"),
-                      title_size='18sp',
+                      title_size='16pt',
                       content=content,
                       size_hint=(0.7, 0.9))
         content.ok.bind(
@@ -1062,7 +1110,7 @@ class Main(App, BoxLayout):
     def saveto():
         content = Saveto()
         popup = Popup(title=_("Выберите папку"),
-                      title_size='18sp',
+                      title_size='16pt',
                       content=content,
                       size_hint=(0.9, 0.9))
         content.select.bind(on_press=Partial(content.save, popup))
@@ -1074,7 +1122,7 @@ class Main(App, BoxLayout):
             parent.dismiss()
         content = Login()
         popup = Popup(title=_("Вход по паролю"),
-                      title_size='18sp',
+                      title_size='16pt',
                       content=content,
                       size_hint=(0.8, 0.55))
         if force:
@@ -1086,7 +1134,7 @@ class Main(App, BoxLayout):
     def account(self):
         content = Account()
         popup = Popup(title=_("Аккаунт"),
-                      title_size='18sp',
+                      title_size='16pt',
                       content=content,
                       size_hint=(0.8, 0.6))
         content.relogin.bind(on_press=Partial(self.login, parent=popup))
@@ -1096,7 +1144,7 @@ class Main(App, BoxLayout):
     def about():
         content = About()
         popup = Popup(title=_("О ScadsStats"),
-                      title_size='18sp',
+                      title_size='16pt',
                       content=content,
                       size_hint=(0.95, 0.95))
         content.link.bind(on_ref_press=Partial(open_url, "https://vk.com/sysrqtech"))
@@ -1189,10 +1237,10 @@ class Main(App, BoxLayout):
 
 
 def main():
-    Window.size = (700, 400)
+    Window.size = (750, 400)
+    Config.set("graphics", "resizable", 1)
     Config.set("kivy", "exit_on_escape", 0)
     Config.set("input", "mouse", "mouse,disable_multitouch")
-    Config.set("graphics", "resizable", 0)
     try:
         Main().run()
     except TypeError as err:

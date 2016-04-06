@@ -32,10 +32,11 @@ Help us
 
 requirements = ["vk", "requests"]
 if sys.platform.startswith("win"):
-    requirements.append("gettext_windows")
+    requirements.extend(["gettext_windows", "wheel", "docutils", "pygments", "pypiwin32",
+                         "kivy.deps.sdl2", "kivy.deps.glew", "kivy"])
 
 setup(name="ScadsStats",
-      version="1.0.0.2",
+      version="1.0.1",
       description="Finding active users on VK walls",
       long_description=long_desc,
       author="Matvey Vyalkov",
