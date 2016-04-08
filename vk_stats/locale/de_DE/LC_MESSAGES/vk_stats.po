@@ -1,0 +1,371 @@
+msgid ""
+msgstr ""
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: POEditor.com\n"
+"Project-Id-Version: SysRq ScadsStats\n"
+"Language: de\n"
+
+#: stats.py:85
+msgid "Создана временная директория %s"
+msgstr "Es ist das vorübergehende Verzeichnis geschaffen %s"
+
+#: stats.py:158
+msgid "Операция прервана по тайм-ауту"
+msgstr "Die Operation ist nach der Auszeit unterbrochen"
+
+#: stats.py:211
+msgid "Предупреждение"
+msgstr "Warnung!"
+
+#: stats.py:241
+msgid "Некоторая информация"
+msgstr "Einige Informationen"
+
+#: stats.py:245
+msgid "Всё OK"
+msgstr "Alles gut!"
+
+#: stats.py:259
+msgid "Результаты будут сохранены в %s"
+msgstr "Die Ergebnisse werden in aufgespart sein %s"
+
+#: stats.py:279
+msgid "Создаю временную директорию..."
+msgstr "Ich schaffe das vorübergehende Verzeichnis..."
+
+#: stats.py:280
+msgid "Скачиваю новую версию..."
+msgstr "Ich lade die neue Version herunter..."
+
+#. Здесь не уверен насчет установщика, надо подумать
+#: stats.py:285
+msgid "Запускаю установщик..."
+msgstr "Ich starte die Anlagern"
+
+#: stats.py:288
+msgid "Обновитесь, используя пакетный менеджер"
+msgstr "Werden Sie erneuert, verwendend der Stapelmanager "
+
+#: stats.py:290
+msgid "Завершаю работу приложения..."
+msgstr " Beende die Arbeit der Anlage"
+
+#: stats.py:351
+msgid "Неверный URL"
+msgstr "Falsch URL"
+
+#: stats.py:432
+msgid "Ограничено до %s постов"
+msgstr "Es ist bis zu %s Posten beschränkt"
+
+#: stats.py:441
+msgid "Неправильный формат даты!"
+msgstr "Das falsche das Datum Format"
+
+#: stats.py:447
+msgid "Будут получены посты с даты %s"
+msgstr "Es werden die Posten vom Datum %s bekommen sein"
+
+#: stats.py:452
+msgid "Будут получены посты до даты %s"
+msgstr "Es werden die Posten bis Datum %s bekommen sein"
+
+#. Тут я бессилен насчет слова Кэш. Сам не знаю, гугел ничего не говорит.
+#: stats.py:461
+msgid "Кэш стены загруженен"
+msgstr "Cache die Wände ist beladen"
+
+#: stats.py:482
+msgid "Получение постов"
+msgstr "Erhalten der Posten"
+
+#: stats.py:560
+msgid "Обработка постов"
+msgstr "Bearbeitung der Posten"
+
+#: stats.py:570
+msgid "Обработано %s постов"
+msgstr "Der %s  Posten bearbeitet"
+
+#: stats.py:582
+msgid "Получение пользователей"
+msgstr "Erhalten der Benutzer"
+
+#. Опять же, не уверен. Лайк конечно так и будет по-немецки, но вот окончание, с этим проблема не большая.
+#: stats.py:601
+msgid "Получение лайкеров"
+msgstr "Erhalten der Liker"
+
+#: stats.py:613
+msgid "Получение комментаторов"
+msgstr "Erhalten der Kommentatoren"
+
+#: stats.py:623 stats.py:630 stats.py:732 stats.py:743 stats.py:774
+#: stats.py:781 stats.py:812 stats.py:823 stats.py:852 stats.py:859
+msgid "Обработка пользователей"
+msgstr "Bearbeitung der Benutzer"
+
+#: stats.py:645
+msgid "Инициализация"
+msgstr "Вie Initialisierung"
+
+#. да, слова "получение" и "сохранение" очень похожи, так что здесь нет ошибок.
+#: stats.py:655
+msgid "Сохранение результатов"
+msgstr "Erhaltung der Ergebnisse"
+
+#: stats.py:664
+msgid "РЕЖИМ СТАТИСТИКИ:"
+msgstr "REGIME DER STATISTIK:"
+
+#: stats.py:668
+msgid "Имя"
+msgstr "Name"
+
+#: stats.py:668 stats.py:675
+msgid "Счёт"
+msgstr "Die Rechnung"
+
+#: stats.py:675
+msgid "Пользователь"
+msgstr "Der Benutzer "
+
+#: stats.py:678
+msgid "Сохранение результатов в %s"
+msgstr "Erhaltung der Ergebnisse in %s"
+
+#: stats.py:713
+msgid "Получить программу"
+msgstr "Das Programm zu bekommen"
+
+#. Если места достаточно, могу добавить Es Ist вначале, для большего понимания и соблюдения правил языка. Прошу ответить.
+#: stats.py:717
+msgid "Сделано!"
+msgstr "Es ist Gemacht! "
+
+#: stats.py:939
+msgid "1) Откройте [color=3366bb][ref=http://vk.cc/3T1J9A]страницу авторизации[/ref][/color]\n"
+"2) Войдите и дайте разрешения приложению\n"
+"3) Скопируйте текст из адресной строки\n"
+"4) Вставьте его ниже!"
+msgstr "1) Öffnen [color=3366bb] [ref=http://vk.cc/3T1J9A] Sie die Seite der Autorisation [/ref] [/color] \n"
+"2) Gehen und geben Sie die Lösungen der Anlage \n"
+"3) Schreiben den Text aus der Adresszeile \n"
+"4) Stellen es niedriger ein!"
+
+#: stats.py:955
+msgid "Неверный токен!"
+msgstr "Falsch Token!"
+
+#: stats.py:963
+msgid "Вход по токену"
+msgstr "Eingang nach Token"
+
+#: stats.py:977
+msgid "Неверный логин или пароль!"
+msgstr "Falsch Login oder die Parole!"
+
+#: stats.py:989
+msgid "[b][size=28]ScadsStats 1.0[/size][/b]\n"
+"Вычисление активных пользователей на стенах ВКонтакте.[color=3366bb]\n"
+"[ref=https://vk.com/sysrqtech]Сообщество ВК[/ref][/color]"
+msgstr "[b] [size=28] ScadsStats 1.0 [/size] [/b]\n"
+"Die Berechnung der aktiven Benutzer an den Wänden VKontakte. [color=3366bb]\n"
+"[ref=https://vk.com/sysrqtech] VK Gesellschaft [/ref] [/color]"
+
+#: stats.py:998 interface.kv:279
+msgid "Лицензия"
+msgstr "Der Licenz"
+
+#: stats.py:1000 interface.kv:284
+msgid "Помочь нам"
+msgstr "Uns zu helfen"
+
+#: stats.py:1036
+msgid "Вы авторизованы как [b]{first_name} {last_name}[/b]"
+msgstr "Sie sind autorisiert wie [b] {first_name} {last_name} [/b] "
+
+#: stats.py:1045
+msgid "Вы используете последнюю версию!"
+msgstr "Sie verwenden die letzte Version!"
+
+#: stats.py:1045
+msgid "Нечего делать ;)"
+msgstr "Nichts zu machen ;)"
+
+#: stats.py:1048
+msgid "Используйте пакетный менеджер для обновления"
+msgstr "Verwenden Sie der Stapelmanager für die Erneuerung"
+
+#: stats.py:1051
+msgid "Найдено обновление до {}!"
+msgstr "Die Erneuerung bis zu {} gefunden!"
+
+#: stats.py:1052
+msgid "Найдено обновление!"
+msgstr "Die Erneuerung gefunden!"
+
+#: stats.py:1066
+msgid "Ограничение по дате"
+msgstr "Beschränkung nach dem Datum"
+
+#: stats.py:1076
+msgid "Выберите папку"
+msgstr "Wählen Sie die Mappe"
+
+#: stats.py:1087
+msgid "Вход по паролю"
+msgstr "Eingang nach der Parole"
+
+#: stats.py:1098 interface.kv:325
+msgid "Аккаунт"
+msgstr "Das Benutzerkonto"
+
+#: stats.py:1107 interface.kv:338
+msgid "О ScadsStats"
+msgstr "Über ScadaStats"
+
+#: stats.py:1127
+msgid "Укажите стену"
+msgstr "Bezeichnen Sie die Wand"
+
+#: stats.py:1135 interface.kv:374 interface.kv:375
+msgid "Пишущие"
+msgstr "Die Schreibenden"
+
+#. вообще не знаю, как перевести, оставлю пока что
+#: stats.py:1138 interface.kv:375
+msgid "Лайкаемые"
+msgstr "Wen mögen"
+
+#. Как писал выше, не знаю как перевести на нем.
+#: stats.py:1141 interface.kv:375
+msgid "Лайкеры"
+msgstr "Die Liebhaber"
+
+#: stats.py:1144 interface.kv:375
+msgid "Обсуждаемые"
+msgstr "Die Besprochenen"
+
+#: stats.py:1173
+msgid "Проверьте Ваше интернет-соединение"
+msgstr "Prüfen Sie Ihre Vereinigung"
+
+#: interface.kv:111
+msgid "Да"
+msgstr "Ja"
+
+#: interface.kv:114
+msgid "Нет"
+msgstr "Nein"
+
+#: interface.kv:130
+msgid "Выбрать"
+msgstr "Auswählen"
+
+#: interface.kv:160
+msgid "полный URL, полученный по инструкции выше"
+msgstr "Voll URL ist es höher, bekommen nach der Instruktion"
+
+#: interface.kv:166 interface.kv:214
+msgid "Войти"
+msgstr "Einloggen"
+
+#: interface.kv:183
+msgid "Логин:"
+msgstr "Login:"
+
+#: interface.kv:198
+msgid "Пароль:"
+msgstr "Das Passwort"
+
+#: interface.kv:218
+msgid "Без пароля"
+msgstr "Ohne Parole"
+
+#. Здесь проблемка, но вродь перевод правильный.
+#: interface.kv:237
+msgid "Перезайти"
+msgstr "Zu übereinloggen"
+
+#: interface.kv:246
+msgid "О программе"
+msgstr "Über das Programm"
+
+#: interface.kv:262
+msgid "Благодарности"
+msgstr "Der Dankbarkeit"
+
+#: interface.kv:267
+msgid "Авторы"
+msgstr "Die Autoren"
+
+#: interface.kv:271
+msgid "Переводчики"
+msgstr "Die Übersetzer"
+
+#: interface.kv:275
+msgid "Дизайнеры"
+msgstr "Die Designer"
+
+#: interface.kv:282
+msgid "Загрузка..."
+msgstr "Laden..."
+
+#. вики говорит, что репозиторй будет так же, как и на английском
+#: interface.kv:286
+msgid "Вы перенаправлены на страницу репозитория.\n"
+"Сделайте программу лучше!"
+msgstr "Sie sind auf die Seite repository gerichtet. \n"
+"Machen Sie das Programm besser!"
+
+#: interface.kv:311
+msgid "Файл"
+msgstr "Die Datei"
+
+#: interface.kv:314
+msgid "Сохранять в..."
+msgstr "Aufzusparen in..."
+
+#: interface.kv:319
+msgid "Выход"
+msgstr "Die Abmeldung"
+
+#: interface.kv:323
+msgid "Правка"
+msgstr "Die Korrektur"
+
+#: interface.kv:330
+msgid "Помощь"
+msgstr "Die Hilfe"
+
+#: interface.kv:333
+msgid "Обновиться"
+msgstr "Erneuert zu werden"
+
+#: interface.kv:364
+msgid "Режим:"
+msgstr "Das Regime:"
+
+#: interface.kv:375
+msgid "Комментаторы"
+msgstr "Die Kommentatoren"
+
+#: interface.kv:379
+msgid "Посты:"
+msgstr "Die Posten:"
+
+#: interface.kv:393
+msgid "все по умолчанию"
+msgstr "Aller als Voreinstellung"
+
+#: interface.kv:395
+msgid "Дата:"
+msgstr "Datum:"
+
+#: interface.kv:423
+msgid "Поехали!"
+msgstr "Gefahren!"
+
