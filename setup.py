@@ -27,7 +27,7 @@ Help us
 ==========
 * `Translate <https://poeditor.com/join/project/cq07DODUUL>`_ the program to your language
 * `Improve <https://github.com/SysRq-Tech/ScadsStats>`_ the code
-* `Join <http://vk.com/sysrqtech>`_ VK community
+* `Join <http://vk.com/sysrqint>`_ VK community
 """
 
 requirements = ["vk", "requests"]
@@ -49,5 +49,6 @@ setup(name="ScadsStats",
                     "vk_stats": ["html/*.*",
                                  "images/*.*", "images/48/*.*", "images/128/*.*",
                                  "docs/*.*", "docs/credits/*.*",
-                                 "locale/ru_RU/LC_MESSAGES/*.*", "locale/uk_UA/LC_MESSAGES/*.*"]},
+                                 "locale/ru_RU/LC_MESSAGES/*.*", "locale/uk_UA/LC_MESSAGES/*.*",
+                                 "locale/de_DE/LC_MESSAGES/*.*", "locale/en_US/LC_MESSAGES/*.*"]},
       requires=requirements)
